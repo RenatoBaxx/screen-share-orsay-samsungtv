@@ -32,6 +32,8 @@ class PackageTests(unittest.TestCase):
                 self.assertIn("licenses/free-my-tv-MIT.txt", archive.namelist())
                 self.assertNotIn("local.json", archive.namelist())
                 self.assertIn(b"$MANAGER_WIDGET", archive.read("index.html"))
+                self.assertNotIn(b"UE32J4570", archive.read("index.html"))
+                self.assertNotIn(b"UE32J4570", archive.read("ui.js"))
                 root = ET.fromstring(archive.read("config.xml"))
                 self.assertEqual(root.tag, "{http://www.samsung.com/}widget")
                 self.assertIn(b"192.168.1.20/media/test.mp4", archive.read("config.js"))

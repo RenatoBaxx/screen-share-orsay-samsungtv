@@ -102,7 +102,7 @@ var Lab = (function () {
     if (panel === 2) $('panel-text').textContent = OrsayTV.diagnostics();
   }
   function start() {
-    $('build-label').textContent = 'UE32J4570 · Build ' + LAB_CONFIG.buildVersion;
+    $('build-label').textContent = 'Build ' + LAB_CONFIG.buildVersion;
     LabLog.add('Build ' + LAB_CONFIG.buildVersion);
     fit(); OrsayTV.init(); focus();
     LabLog.observe(function () {

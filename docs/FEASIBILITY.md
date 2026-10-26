@@ -9,8 +9,9 @@ replacement running directly on this TV has not been demonstrated.
 
 Community instructions describe installation without firmware changes, but the
 available Smart Hub menus and firmware determine whether it works. The first
-checks are installation, remote input and actual video playback. No device test
-has been completed.
+checks are installation, remote input and actual video playback. Installation
+and native remote-key events have since been confirmed on the UN40FH5303;
+physical video playback and the original J4570 remain untested.
 
 | Goal | Evidence / assessment | Still to confirm |
 | --- | --- | --- |
@@ -47,6 +48,10 @@ download URL.
 The community instructions [S5] describe develop login, holding OK on an app,
 IP Setting and Start User App Sync for H and selected J/K models. They do not
 explicitly list J4570 as tested. Installation must therefore be checked on the TV.
+The same source documents a separate 2013 F-series menu path. The
+[UN40FH5303 test guide](TV_TEST.md) follows that path. On this model, the widget
+launched and sent native diagnostics and remote-key events to the server;
+picture, sound and player stability still require direct observation.
 
 Firmware changes, a service menu, root access and a Smart Hub reset are not
 prerequisites. If menus are missing, record the current state first. USB

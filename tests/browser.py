@@ -69,7 +69,7 @@ def check_browser(folder):
             page.on("pageerror", lambda error: errors.append(str(error)))
             url = "http://127.0.0.1:" + str(port) + "/preview/index.html"
             page.goto(url)
-            assert "Build 0.1.7" in page.locator("#build-label").inner_text()
+            assert page.locator("#build-label").inner_text() == "Build 0.1.7"
             assert "BROWSER" in page.locator("#mode").inner_text()
             assert "focus" in page.locator("#tile-0").get_attribute("class")
             page.keyboard.press("ArrowRight")

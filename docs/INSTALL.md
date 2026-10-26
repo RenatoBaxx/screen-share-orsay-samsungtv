@@ -154,9 +154,23 @@ each POST to 32 KiB. Image and sound must still be checked directly on the TV.
 
 ## 4. Sync on the TV
 
-This procedure comes from community instructions for H and selected J/K models
-[S5] and the archived installer [S3]. Installation on J4570 is still unconfirmed.
-Try the H/J menu path first:
+Community instructions distinguish the 2013 F-series menus from H and selected
+J/K models [S5]. The UN40FH5303 installed and launched build 0.1.1 through this
+route on 2026-10-24, confirmed by the icon on the TV and native diagnostics and
+remote-key events reaching the server. Physical picture and sound are not yet
+confirmed. Installation on the original J4570 remains unverified.
+For the UN40FH5303, follow the [F-series TV test](TV_TEST.md):
+
+1. Menu > Smart Features > Samsung Account > Log In. Enter `develop` as the
+   Email; the F-series reference does not require a password.
+2. Smart Hub > Apps > More Apps > Options > IP Setting. Enter the **server's**
+   IP (`192.168.1.20` in this example), not the TV's IP.
+3. Options > Start App Sync. Watch the server for GETs of `widgetlist.xml`
+   and the ZIP; leave and reopen Smart Hub if needed.
+4. Open Orsay Lab from More Apps and check the displayed build and diagnostics.
+
+For the original J4570 target, H/J community instructions [S5] and the
+archived installer [S3] suggest the following path; it is also unverified:
 
 1. Open Menu > Smart Hub > Samsung Account > Sign in. The local developer account
    is `develop`. Some models require no password; the reference otherwise lists
@@ -170,7 +184,7 @@ Try the H/J menu path first:
 
 Other Orsay interfaces use Tools > Settings > Development > Server IP and user
 app synchronization. The RED/BLUE menu path in [S3] applies to other Orsay
-versions and is not a verified J4570 procedure. Do not substitute the Tizen
+versions and is not a verified F/J procedure. Do not substitute the Tizen
 "Apps, 12345" instructions.
 
 If the account, IP setting or sync option is missing, record the firmware and

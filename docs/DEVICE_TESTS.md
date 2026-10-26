@@ -1,8 +1,10 @@
 # Device tests and results
 
-For the first attempt, follow the [short TV test guide](TV_TEST.md).
-No tests have been confirmed on the TV yet. The checks below must be performed
-on the device. Do not include account details or tokens in shared results.
+For the remaining checks, follow the [short TV test guide](TV_TEST.md).
+On 2026-10-24 the UN40FH5303 installed and started build 0.1.1, and the server
+received native Orsay diagnostics and remote-key events. Picture and sound
+still require direct observation. Do not include account details or tokens
+in shared results.
 
 ## Information to collect
 
@@ -46,23 +48,23 @@ on the device. Do not include account details or tokens in shared results.
 After the initial checks, test a longer film, pause/seek/resume, subtitles and
 restarts before treating the setup as suitable for daily use.
 
-## Results template
+## On-device results and pending checks
 
 | Test / information | Result on the device |
 | --- | --- |
-| Date, model, firmware | pending |
-| TV IP / installation server IP | pending; redact for public reports if needed |
-| Menu path, develop login and sync | pending |
+| Date, model, firmware | 2026-10-24, UN40FH5303; firmware pending |
+| TV IP / installation server IP | same LAN; omit private addresses in public reports |
+| Menu path, develop login and sync | icon reported after sync; exact on-screen path pending |
 | widgetlist.xml / ZIP in server console | pending |
-| Widget startup / visible API mode | pending |
-| Displayed build / remote logging HTTP 204 | pending |
-| INFOLINK / SEF / Legacy AVPlay detected | pending |
-| Viewport / panel / player plane | pending |
-| Raw Left/Right/Up/Down/OK codes | pending |
-| Return from panel / Return from home / Exit | pending |
+| Widget startup / visible API mode | native Orsay mode confirmed by TV log; visible UI pending |
+| Displayed build / remote logging HTTP 204 | build 0.1.1 reached server; displayed label pending |
+| INFOLINK / SEF / Legacy AVPlay detected | all detected; functionality not established |
+| Viewport / panel / player plane | TV reported 1280×720 viewport; picture/plane pending |
+| Raw Left/Right/Up/Down/OK codes | 4 / 5 / 29460 / 29461 / 29443 reached server |
+| Return from panel / Return from home / Exit | raw Return code 88 received; visible transitions and Exit pending |
 | MP4: moving picture / audible sound | pending / pending |
-| MP4: stable for 20 seconds / stop / repeated starts | pending |
-| Player errors / callbacks / HTTP status | pending |
+| MP4: stable for 20 seconds / stop / repeated starts | Return received about 19 seconds after first start; second attempt reached native rendering-complete callback about 32 seconds after starting the 30-second sample; visible stability and further restarts pending |
+| Player errors / callbacks / HTTP status | InitPlayer/StartPlayback returned 1; stream-info, buffer-ready and rendering-complete callbacks reached the log without a logged player error; on-screen progress and TV-side media HTTP status pending |
 | Plex version / PMS version / Pi model | pending |
 | Plex login / library / picture / sound | pending |
 | Plex: Direct Play / Direct Stream / transcoding | pending |

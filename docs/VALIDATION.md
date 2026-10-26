@@ -76,11 +76,57 @@ These are local browser and mock checks. Library loading, plugin detection,
 XHR transmission and remote input still need confirmation on Orsay.
 Playback through SEF and AVPlay was not implemented.
 
+## F-series preparation on macOS, 2026-10-24 (before TV sync)
+
+For the proposed UN40FH5303 test, the widget heading no longer claims to be
+running on the original UE32J4570. The installation guide now uses the 2013
+F-series developer menus rather than the H/J hold-OK path. No TV behavior was
+inferred from these changes.
+
+- Six Python package/server tests and sixteen Node.js player/logging tests passed.
+- The Playwright Chromium test passed, including the exact generic build label,
+  remote navigation, simulated Orsay APIs, HTTP logging and real HTML5 video
+  progress. Chromium is not the TV's Legacy WebKit.
+- FFmpeg generated a 30-second H.264 Constrained Baseline 1280x720 / AAC-LC
+  test file. `ffprobe` confirmed its streams and duration.
+- An installation ZIP and `widgetlist.xml` were built for the Mac's current
+  LAN IP on port 80. A temporary server on port 8080 answered HTTP 200 for
+  health, manifest and ZIP, and HTTP 206 for a video byte range. This checks
+  LAN binding on the Mac, not access from the TV or installation via port 80.
+- The TV later appeared on the LAN: SSDP/UPnP reported modelName
+  `UN40FH5303`, and the host responded to ping. This establishes reachability
+  from the Mac, not that the TV can fetch the widget or run it. At this
+  preparation stage, port 80 could not be bound without administrator
+  authorization; no password or on-device interaction was available.
+
+## UN40FH5303 installation and startup, 2026-10-24
+
+The user started the port-80 server on the Mac and reported **Orsay Lab** in
+the TV's apps. The server subsequently received diagnostic batches from the
+TV's LAN address, reporting build `0.1.1` in native Orsay mode. The device
+reported `Widget: true`, `Ready gesendet: true` and `TVKeyValue: true`;
+left/right/up/down/OK key codes arrived from the remote. Samsung's NNavi
+reported `13_X12_2D`, while UPnP reported the full model `UN40FH5303`.
+
+The native player reported `InitPlayer` and `StartPlayback` return value `1`,
+followed by `StreamInfoReady`, buffering and buffer-ready events. A Return key
+arrived about 19 seconds after the first start, before the 20-second
+no-progress watchdog could fire. In a second attempt, `OnRenderingComplete`
+arrived about 32 seconds after starting the 30-second sample, with no
+logged timeout or player error. This is evidence that the native player
+reached the end of the stream, **not proof of a visible moving picture or
+audible sound**. Progress callbacks update the on-screen status but are not
+sent to the server log; their absence there cannot establish a stall. No
+physical image/audio result or firmware version has been reported. The native
+player was exercised; the other detected Orsay interfaces were not. Physical
+video/audio, remote navigation feedback and the other on-device checks below
+remain open.
+
 ## Not yet tested
 
-- Installation, menus, firmware compatibility and SDK 5.1 runtime on UE32J4570.
-- Physical remote, default navigation, leaving the app and focus after returning.
-- Native plugin callbacks, video plane, audible sound, repeated starts and long runs.
+- Installation, menus, firmware compatibility and runtime on UE32J4570.
+- Physical image/overscan, navigation feedback, Return/Exit and focus after returning on UN40FH5303.
+- On-screen playback progress, visible video plane, audible sound, repeated starts and long runs.
 - PMS authentication, Direct Play of real library files and Pi load.
 - Launch, playback and login in the installed Plex and YouTube apps.
 - TV TLS versions, certificate store, codec limits and service compatibility.
